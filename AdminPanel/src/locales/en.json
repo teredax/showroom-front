@@ -1,0 +1,170 @@
+{
+  "About": {
+    "jumbotronTitle": "About Alpha Software",
+    "jumbotronSubTitle": "Learn about Alpha Software",
+    "heading1": "Our Mission",
+    "headingText1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur congue odio in magna condimentum gravida. Nunc fringilla risus in augue ultricies vestibulum. Sed turpis ante, venenatis eget nulla in, congue sodales nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed convallis ante nunc. Vestibulum vel nulla quis dolor rhoncus sodales. Cras lobortis est purus, ut venenatis sapien eleifend non. Aenean malesuada justo in condimentum tempus. In venenatis auctor turpis, et consequat massa pellentesque at. Fusce massa nisi, tempus ac massa eu, imperdiet ornare velit. Nam mollis felis nec gravida viverra. Donec viverra lacinia tincidunt. Donec et accumsan est, vitae tincidunt risus.",
+    "heading2": "We build products for developers and designers",
+    "headingText2": "Quisque sit amet est vitae elit tincidunt pellentesque. Fusce ac orci imperdiet, vulputate neque non, iaculis est. Integer quis efficitur metus, ut tincidunt enim. Integer libero massa, hendrerit eget felis vel, accumsan congue arcu. Aenean sit amet aliquam sapien, ut commodo tortor. Duis eleifend aliquet eleifend. Pellentesque bibendum diam aliquet ipsum egestas porttitor. Fusce tristique lobortis auctor. Aenean dignissim, quam vestibulum molestie tristique, mi est interdum magna, vel suscipit tortor ex vitae lorem. Proin gravida pellentesque suscipit. Morbi ornare dapibus congue. Vestibulum varius, diam sed tempor maximus, urna sem ultricies massa, at luctus velit diam cursus tortor. Curabitur et ex vestibulum, sodales massa ac, rutrum nisl. Aliquam a neque enim. Cras tempor consequat fringilla."
+  },
+  "Contact": {
+    "jumbotronTitle": "Contact Alpha Software",
+    "jumbotronSubTitle": "Get in touch with our Support Staff",
+    "heading1": "We'd Love to Hear From You!",
+    "headingText1": "To request more informaiton, please fill out and submit the form below",
+    "phone": "(561) 284 - 5555",
+    "address": "555 Main Street",
+    "cityState": "Boca Raton, FL",
+    "zip": "33555",
+    "submit": "Submit"
+  },
+  "Footer": {
+    "company": "Alpha Software",
+    "github": "Github",
+    "twitter": "Twitter",
+    "facebook": "Facebook",
+    "rights": "All Rights reserved.",
+    "categories": [
+      {
+        "text": "Category 1",
+        "items": [
+          { "text": "Link 1", "href": "javascript:;" },
+          { "text": "Link 2", "href": "javascript:;" },
+          { "text": "Link 3", "href": "javascript:;" },
+          { "text": "Link 4", "href": "javascript:;" }
+        ]
+      },
+      {
+        "text": "Category 2",
+        "items": [
+          { "text": "Link 1", "href": "javascript:;" },
+          { "text": "Link 2", "href": "javascript:;" },
+          { "text": "Link 3", "href": "javascript:;" },
+          { "text": "Link 4", "href": "javascript:;" }
+        ]
+      },
+      {
+        "text": "Category 3",
+        "items": [
+          { "text": "Link 1", "href": "javascript:;" },
+          { "text": "Link 2", "href": "javascript:;" },
+          { "text": "Link 3", "href": "javascript:;" },
+          { "text": "Link 4", "href": "javascript:;" }
+        ]
+      }
+    ]
+  },
+  "Home": {
+    "jumbotronTitle": "Build Better Software &mdash; Faster.",
+    "jumbotronSubTitle": "The complete suite of enterprise-level modern cloud software services",
+    "callToActionBtn": "Request a Quote",
+    "platformHeader": "The Enterprise-Scale Platform as a Service",
+    "cardFeatures": [
+      {
+        "title": "Focus on Your Project",
+        "text": "With Alpha Software you don\"t need to worry about infrastructure, disaster recovery, or dev ops. Through the ASCLI tool everything from servers to orchestrated deployments is one click away.",
+        "img": "feature1"
+      },
+      {
+        "title": "Support for Nine Languages",
+        "text": "Alpha Software products support 9 or more languages. Whether you are using Java, Node, C++, Swift, Go, or Ruby your applications are already compatible with Alpha Software\"s services.",
+        "img": "feature2"
+      },
+      {
+        "title": "Pricing from Startups to Enterprise",
+        "text": "At Alpha Software we know that startups and experimentations are a core component to the success and speed of innovation in the software industry. That\"s why we offer pricing from startups all the way to enterprise level businesses.",
+        "img": "feature3"
+      }
+    ],
+    "listFeatures": [
+      {
+        "title": "Everything You Need",
+        "text": "We focus on DevOps, giving you more time to focus on your product",
+        "icon": "mdi-arrow-right-drop-circle"
+      },
+      {
+        "title": "Processing",
+        "text": "From virtual machines with proven price/performance advantages to a fully managed app development platform.",
+        "icon": "mdi-server-network"
+      },
+      {
+        "title": "State-of-the-Art Networking",
+        "text": "State-of-the-art software-defined networking products on Alpha Software\"s private fiber network",
+        "icon": "mdi-chart-bubble"
+      },
+      {
+        "title": "Fully Secured",
+        "text": "Control access and visibility to resources running on a platform protected by Alpha Software\"s security model",
+        "icon": "mdi-verified"
+      },
+      {
+        "title": "Design Feedback Tool",
+        "text": "Collaborate on user experience journeys with your team using Alpha Software\"s EnFocus tool",
+        "icon": "mdi-brush"
+      },
+      {
+        "title": "Real-Time Monitoring",
+        "text": "Monitoring, logging, and diagnostics and more, all in an easy to use web management console or mobile app.",
+        "icon": "mdi-chart-areaspline"
+      }
+    ],
+    "testimonials": [
+      {
+        "author": "Elizabeth Marner",
+        "title": "CEO, Boca Cola",
+        "quote": "Using AlphaSoftware’s Cloud Platform, the campaign runs smoothly 24/7 and includes redundancy, failover techniques, backups and state-of-the-art monitoring. Plus, it’s affordable."
+      },
+      {
+        "author": "Miguel Killorn",
+        "title": "CEO, Abocado",
+        "quote": "The ease, integration and scalability that Alpha Softwareoffers with Cloud Platform allow us to offer the best online grocery shopping around."
+      }
+    ]
+  },
+  "Projects": {
+    "projectsTitle": "Projects"
+  },
+  "Services": {
+    "jumbotronTitle": "ASCC - Alpha Software Compute Cloud",
+    "jumbotronSubTitle": "Launch applications when needed without upfront commitments.",
+    "heading1": "Realtime Global Deployments",
+    "headingText1": "Te dolor consul mei, etiam molestie indoctum usu ad, qui inermis eleifend an. Pro iriure alienum incorrupte ex, cu diceret moderatius mei. Te corrumpit posidonium sit, in cum nonumy utamur. Usu impedit patrioque vituperatoribus ei, cu voluptua nominati philosophia mel. Sea at legendos percipitur, nulla dicant convenire ne duo. Veniam epicuri vis cu, ea pri alii ceteros fierent.",
+    "heading2": "Focus On What Drives Your Business",
+    "headingText2a": "Lorem ipsum dolor sit amet, ea mutat tation constituam per, mei error ocurreret definiebas ne. Te harum constituto inciderint his. Vis no delenit mediocritatem. His et debet possim perpetua, assum argumentum ne quo, constituto eloquentiam sea ne. Ne has ludus graecis fabellas.",
+    "headingText2b": "Ei est iriure partiendo, ius falli tritani accumsan ad, mea altera eripuit fierent ut. Te quem legere fastidii ius. Ei vis quod qualisque, ignota nemore cotidieque mea eu. Scripta labitur ei vel, mei case quidam corpora no, est dico sale utroque ne. Eu erroribus delicatissimi eum, ut quem veri tincidunt vim.",
+    "headingText2c": "Velit eruditi an est, cu eius graeci sed. Vel ei dolorem sapientem temporibus. No his omnes meliore maiestatis, mei iisque molestiae gubergren ex. Usu placerat liberavisse et, eam dicta blandit evertitur an. Ea vim fabellas indoctum maiestatis.",
+    "testimonial": {
+      "author": "Jay Oakerson",
+      "title": "CEO Abocado",
+      "quote": "With Alpha Software powering all of our customer-facing services and ASCC, helping us monitor and understand application performance, Abocado is in great shape to create and release new products."
+    }
+  },
+  "View": {
+    "items": [
+      {
+        "to": "/",
+        "text": "Productos"
+      },
+      {
+        "to": "/users",
+        "text": "Usuarios"
+      },
+      {
+        "to": "/offices",
+        "text": "Oficinas"
+      },
+      {
+        "to": "/cupons",
+        "text": "Cupones"
+      },
+      {
+        "to": "/suggestions",
+        "text": "Quejas y Sugerencias"
+      },
+      {
+        "to": "/FAQ",
+        "text": "FAQ"
+      }
+    ]
+  }
+}

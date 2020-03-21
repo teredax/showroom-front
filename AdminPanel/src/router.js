@@ -1,0 +1,57 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+const router = new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/components/core/Jumbotron')
+    },
+    {
+      path: '/',
+      name: 'Home',
+      component: () => import('@/views/Items')
+    },
+    {
+      path: '/links',
+      name: 'Links',
+      component: () => import('@/views/Links')
+    },
+    {
+      path: '*',
+      name: '404',
+      component: () => import('@/views/Error')
+    },
+    {
+      path: '/items',
+      name: 'Items',
+      component: () => import('@/views/Items')
+    },
+    {
+      path: '/users',
+      name: 'Usuarios',
+      component: () => import('@/views/Users')
+    },
+    {
+      path: '/tags',
+      name: 'Tags',
+      component: () => import('@/views/Tags')
+    },
+  ]
+})
+// Bootstrap Analytics
+// Set in .env
+// https://github.com/MatteoGabriele/vue-analytics
+if (process.env.VUE_APP_GOOGLE_ANALYTICS) {
+  Vue.use(require('vue-analytics').default, {
+    id: process.env.VUE_APP_GOOGLE_ANALYTICS,
+    router,
+    autoTracking: {
+      page: process.env.NODE_ENV !== 'development'
+    }
+  })
+}
+export default router

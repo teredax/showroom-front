@@ -1,0 +1,20 @@
+{
+  "name": "@vuetify-alpha-theme/core",
+  "version": "0.5.0",
+  "private": true,
+  "main": "dist/alpha.common.js",
+  "module": "dist/alpha.umd.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --name alpha ./src/index.js",
+    "lint": "vue-cli-service lint",
+    "watch": "yarn build --watch --mode development"
+  },
+  "devDependencies": {
+    "vue": "^2.6.6",
+    "vue-cli-plugin-vuetify": "^0.5.0",
+    "vue-template-compiler": "^2.6.6",
+    "vuetify": "^1.5.5",
+    "vuetify-loader": "^1.2.1"
+  }
+}
