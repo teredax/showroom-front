@@ -1,48 +1,99 @@
 <template>
-<section id="services" style="width:100%;">
-    <br>
-    <br>
-    <br>
-    <v-container class="pa-0" grid-list-md text-xs-center>
-                    <v-container class="pa-0" grid-list-md text-xs-center>
-                        <v-layout row wrap>
-                            <v-flex xs12 sm4>
-                                <v-layout column>
-                                    <v-layout row justify-start style="margin: 0;">
-                                        <p class="Admin-title" style="color:#809DED; font:SemiBold Raleway; font-size:40px">Links</p>
-                                    </v-layout>
-                                </v-layout>
-                            </v-flex>
-                                <v-flex xs12 sm6>
-                                    <v-layout column >
+  <div>
+    <v-card text width="100%">
+      <v-data-table
+        :light="light"
+        no-data-text="No hay datos"
+        color="#AC43F0"
+        :page.sync="page"
+        :items-per-page.sync="perPage"
+        :headers="headers"
+        :items="items"
+        item-key="_id"
+      >
+        <template v-slot:item="props">
+          <tr>
+            <td>{{props.item._id}}</td>
+            <td class="request-td">{{props.item.name}}</td>
+            <td class="request-td">{{props.item.tags}}</td>
+            <td class="request-td" :class="'accion'" style="text-align:center; min-width:100px;">
+              <v-icon small class="mr-7" @click="editdialog = true" color="black">mdi-pencil</v-icon>
+              <v-icon small @click="deletdialog = true " color="black">mdi-delete</v-icon>
+            </td>
+          </tr>
+        </template>
+      </v-data-table>
+    </v-card>
 
-                                    </v-layout>
-                                </v-flex>
-                                <v-flex xs12 sm2>
-                                    <v-layout column>
-                                            <v-btn class="mx-2" fab small dark color="#496CAB" @click="dialog = true">
-                                                <v-icon dark>mdi-plus</v-icon>
-                                            </v-btn>
-                                    </v-layout>
-                                </v-flex>
-                        </v-layout>
-                    </v-container>
 
-            <v-card class="mx-auto" :elevation="0">
-                    <MyLinks
-                    @updatePage="updatePage"
-                    @updatePerPage="updatePerPage"
-                    :totalLength="totalLength"
-                    :pageCount="pageCount"
-                    :page="page"
-                    :rowsPerPage="rowsPerPage"
-                    :items="items"
-                    :light="false"
-                    />
-            </v-card>
-    </v-container>
+<!-- Delet Dialog Pasar a componente -->
 
-    <v-dialog v-model="dialog" max-width="800" content-class="dialog-radius">
+<v-dialog persistent max-width="35%" v-model="deletdialog">
+      <v-card class="dialog_container">
+        <v-layout column justify-end>
+          <v-container>
+            <v-layout row justify-center>
+              <h2 style="color:#4a6CAC" v-html="'Eliminar Link'" />
+            </v-layout>
+          </v-container>
+
+          <v-container>
+            <v-layout
+              row
+              justify-center
+              align-center
+              fill-height
+              style="color:black;"
+            >¿Estás seguro que deseas eliminar?</v-layout>
+            <br />
+            <v-container>
+              <v-layout
+                row
+                justify-center
+                align-center
+                fill-height
+                style="color:black;"
+              >Al eliminar ya no se podrá recuperar ni</v-layout>
+            </v-container>
+
+            <v-layout
+              row
+              justify-center
+              align-center
+              fill-height
+              style="color:black;"
+            >deshacerlos cambios...</v-layout>
+
+            <v-layout row justify-center>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <span v-on="on">
+                    <v-btn
+                        color="#E36E6E"
+                        @click="deletdialog = false"
+                        dark>Cancelar</v-btn>
+                    </span>
+                </template>
+                <span v-html="'Cancelar'" />
+              </v-tooltip>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <span v-on="on">
+                    <v-btn color="#4a6CAC" @click="deletdialog = false" dark>Aceptar</v-btn>
+                  </span>
+                </template>
+                <span v-html="'Rechazar un producto'" />
+              </v-tooltip>
+            </v-layout>
+          </v-container>
+        </v-layout>
+      </v-card>
+    </v-dialog>
+
+<!-- Pasar a component edit, establecer reglas de negocios en revisión del primer sprint -->
+
+<v-dialog v-model="editdialog" max-width="800" content-class="dialog-radius">
       <v-card>
         <v-card-title class="headline" style="justify-content:left;color:#809DED;">Nuevo Showroom</v-card-title>
         <v-card-text>
@@ -113,7 +164,7 @@
                                             no-data-text="No hay datos"
                                             :page.sync="page"
                                             :items-per-page.sync="perPage"
-                                            :headers="headers"
+                                            :headers="headersItems"
                                             :items="added"
                                             hide-default-footer
                                             item-key="_id"
@@ -122,7 +173,7 @@
                                             <tr>
                                                 <td class="request-td">{{props.item.name}}</td>
                                                 <td class="request-td" :class="'accion'" style="text-align:center; min-width:100px;">
-                                                <v-icon small @click="deletdialog = true " color="black">mdi-delete</v-icon>
+                                                <v-icon small  color="black">mdi-delete</v-icon>
                                                 </td>
                                             </tr>
                                             </template>
@@ -140,60 +191,64 @@
           <v-btn
             style="text-transform: none; width: 25%; margin-right: 10%;"
             color="#E36E6E"
-            @click="dialog = false"
+            @click="editdialog = false"
             dark
           >Cancelar</v-btn>
           <v-btn
             depressed
             style="text-transform: none; width: 25%; background-color: #809DED; color: white;"
-            @click="dialog = false"
+            @click="editdialog = false"
             color="#809DED"
           >Aceptar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
-</section>
+
+  </div>
 </template>
 
-<script src="https://unpkg.com/filepond-plugin-image-preview"></script>
-<script src="https://unpkg.com/filepond"></script>
-<script src="https://unpkg.com/vue-filepond"></script>
 <script>
-import vueFilePond from "vue-filepond";
-import "filepond/dist/filepond.min.css";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css";
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-
-const FilePond = vueFilePond(
-  FilePondPluginFileValidateType,
-  FilePondPluginImagePreview
-);
-import Axios from "axios";
-import Authentication from "@/components/Authentication";
 export default {
-    data: () => ({
-    pageCount: 0,
-    totalLength:0,
-    rowsPerPage: 10,
-    page: 1,
+  data: () => ({
+    perPage: 0,
+    currentPage: 0,
+    expand: false,
     dialog: false,
-    added:[
-        {
-        _id: "htttps",
-        name: "Item1"
-        },
-        {
-        _id: "htttps",
-        name: "Item2"
-        },
-        {
-        _id: "htttps",
-        name: "Item3"
-        },
-    ],
+    myitems: [],
+    descriptiondialog: false,
+    editdialog: false,
+    deletdialog: false,
+    editedItem: {
+
+    },
     headers: [
+      {
+        text: "ID",
+        value: "_id",
+        sortable: false,
+        align: "left"
+      },
+      {
+        text: "Contact Name",
+        value: "name",
+        sortable: false,
+        align: "center"
+      },
+      {
+        text: "Tags",
+        value: "tags",
+        sortable: false,
+        align: "center"
+      },
+      {
+        text: "Actions",
+        value: "null",
+        sortable: false,
+        align: "center"
+      }
+    ],
+    headersItems: [
       {
         text: "Items",
         value: "name",
@@ -207,92 +262,103 @@ export default {
         align: "center"
       }
     ],
-    tags: ['foo', 'bar', 'fizz', 'buzz'],
-    items: [
-      {
-        _id: "htttps",
-        name: "Angel Figueroa",
-        tags: 5
-      },
-      {
-        _id: "htttps",
-        name: "Jesus Lugo",
-        tags: 5
-      },
-      {
-        _id: "htttps",
-        name: "Gonzalo Adrian",
-        tags: 5
-      },
-      {
-        _id: "htttps",
-        name: "Jorge Sabella",
-        tags: 5
-      },
-    ],
-    }),
-    watch: {
-
+  }),
+  watch: {
+    currentPage: function(val) {
+      this.$emit("updatePage", val);
     },
-    computed: {
-
-    },
-    methods: {
-        updatePage(page) {
-        this.page = page;
-        this.getHistorial();
-        },
-        updatePerPage(per) {
-        this.rowsPerPage = per;
-        this.getHistorial();
-        }
-
-    },
-    mounted() {
-
-    },
-    components: {
-    MyLinks: () => import("@/components/viewComponents/Links/Links-Table")
+    perPage: function(val) {
+      console.log("Change perpage");
+      this.$emit("updatePerPage", val);
     }
+  },
+  filters: {
+    toCurrency(value){
+     value = Number(value)
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+    });
+    return formatter.format(value);
+    },
+    formatDate(date) {
+      date = new Date(date)
+      date = new Date(date)
+      let monthArray = [
+        "Ene",
+        "Feb",
+        "Mar",
+        "Abr",
+        "May",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dic"
+      ];
+      let day = date.getDate();
+      if (day < 10) day = "0" + day;
+      let month = date.getMonth();
+      let year = date.getFullYear();
+      return `${day}/${monthArray[month]}/${year}`;
+    }
+  },
+  methods: {
+    getPrice(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    toggleNext() {
+      this.$emit("next");
+    },
+    updateList() {
+      this.$emit("updateList");
+    },
+    togglePrevious() {
+      this.$emit("previous");
+    },
+    dateFormat(date) {
+      var formattedDate = new Date(date);
+      return formattedDate.toDateString();
+    },
+  },
+  mounted() {
+    this.currentPage = this.page;
+    this.perPage = this.rowsPerPage;
+  },
+  props: {
+    items: Array,
+    pageCount: Number,
+    page: Number,
+    rowsPerPage: Number,
+    light: Boolean
+  },
+  components: {
+  }
 };
 </script>
 
 <style>
-.selected-title-category {
-    font-family: "Open sans", sans-serif;
-    color: black;
-    font-size: 20px;
+.rating-icon {
+  margin: 0 10px;
+}
+.color-description {
+  color: white;
 }
 
-.stat_title-Statistics {
-    font-family: "Open sans", sans-serif;
+.theme--light.v-data-table thead tr th {
+  color: #000000;
 }
 
-.not_logged_in {
-    background-color: black;
+.client_edit_title {
+  margin-top: 5px;
+  font-family: "Open sans", "sans-serif";
+  text-align: center;
+  color: white;
 }
-
-.content_title-Requests {
-    background-color: rgba(250, 250, 250, 1);
+.request-td {
+  text-align: center;
 }
-
-.title_app-App {
-    font-family: "Open sans", "sans-serif";
-    color: black;
-}
-
-.add-btn {
-    background-color: #4DAF7C !important;
-    color: white !important;
-    font-size: 30px !important;
-    font-weight: 200 !important;
-    width: 40px !important;
-    height: 40px !important;
-    min-width: 0 !important;
-}
-
-
-/**
- * Page Styles
- */
 </style>
