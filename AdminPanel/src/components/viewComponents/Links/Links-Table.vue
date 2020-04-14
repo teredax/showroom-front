@@ -130,7 +130,7 @@
                                             multiple
                                             >
                                             <template v-slot:label>
-                                                <p v-html="'Tags'" />
+                                                <p v-html="'Items'" />
                                             </template>
                                             </v-select>
                                         </v-flex>
@@ -148,7 +148,7 @@
                                                     style="border-color:coral;"
                                                 >
                                                     <template v-slot:label>
-                                                    <p v-html="'Descripción larga de la empresa'" />
+                                                    <p v-html="'Descripción'" />
                                                     </template>
                                                 </v-textarea>
                                         </v-flex>
