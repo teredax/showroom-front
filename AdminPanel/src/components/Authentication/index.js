@@ -9,7 +9,20 @@ export default {
   user: { authenticated: false },
   authenticate (context, credentials) {
 
+    //For Demostream
+
     if(credentials.email != "" && credentials.password !=""){
+
+      context.$cookies.set('BP', "DemoAldo", '1D')
+      context.$cookies.set('H1BPidLo', "123", '1D')
+      context.$cookies.set('IjkBPusrnmLo', "Administrador", '1D')
+      router.push('/items')
+      window.location.reload()
+      context.$store.commit("toggle_alert", {
+        color: "green",
+        text: 'Bienvenido a BP'
+      });
+  /*
     var body = new URLSearchParams()
     body.append('username', credentials.email)
     body.append('password', credentials.password)
@@ -38,7 +51,7 @@ export default {
           context.$store.commit("toggle_alert", {
             color: "red",
             text: 'Credenciales inválidas, intente nuevamente'
-          });        })
+          });        })*/
         }else{
           context.$store.commit('toggle_alert', {color: 'red', text: 'Uno o mas campos vacíos'})
         }

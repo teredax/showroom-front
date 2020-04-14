@@ -91,22 +91,22 @@ import router from '@/router'
       sidebarItems: [
         {
           title: "Items", 
-          icon: "mdi-chart-bar", 
+          icon: "mdi-apps", 
           to: "/items" 
         },
         {
           title: "Links", 
-          icon: "mdi-account-multiple", 
+          icon: "mdi-share-variant", 
           to: "/links" 
         },
         {
           title: "Tags", 
-          icon: "mdi-apps", 
+          icon: "mdi-code-tags", 
           to: "/tags" 
         },
         {
           title: "Usuarios", 
-          icon: "mdi-domain", 
+          icon: "mdi-account-multiple", 
           to: "/users" 
         },
       ],
