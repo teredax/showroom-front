@@ -76,21 +76,38 @@ Las siguientes instrucciones son para correr un ambiente local utilizando Vue CL
 
 #### 1. Clonar repositorio y acceder a la carpeta del proyecto Showroom
 ```shell
-$ git clone https://github.com/ProyectoIntegrador2018/blue-lab.git
-$ cd blue-lab/showroom
+$ git clone https://github.com/teredax/showroom-front.git
+$ cd showroom-front
+$ cd showroom
 ```
 
-#### 2. Instalar el proyecto
+#### 2. Instalar el proyecto (tambien se puede usar yarn en lugar de npm)
 ```shell
 $ npm install
 ```
 
-#### 3. Ejecutar aplicación web compilada en tiempo real para development
+#### 3. Ejecutar la aplicacion web (tambien se puede usar yarn en lugar de npm)
 ```shell
 $ npm run serve
 ```
 
-#### 4. Acceder al sitio
+#### 4. Ingresar al folder del panel de administracion desde otra terminal (tambien se puede usar yarn en lugar de npm)
+```shell
+$ cd showroom-front
+$ cd AdminPanel
+```
+
+#### 5. Instalar las dependencias del panel de administracion (tambien se puede usar yarn en lugar de npm)
+```shell
+$ npm install
+```
+
+#### 5. Ejecutar el panel administrativo (tambien se puede usar yarn en lugar de npm)
+```shell
+$ npm run serve
+```
+
+#### 6. Acceder al sitio
 Abrir al navegador de elección y abrir el enlace generado. Usualmente el mensaje es el siguiente.
 ```shell
  DONE  Compiled successfully in 555ms                                  9:31:01 PM
