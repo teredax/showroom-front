@@ -4,7 +4,6 @@
     <br>
     <br>
     <v-container class="pa-0" grid-list-md text-xs-center>
-
         <v-container class="pa-0" grid-list-md text-xs-center>
             <v-layout row wrap>
                 <v-flex xs12 sm2>
@@ -58,9 +57,9 @@
                                         <v-layout column>
                                             <v-flex sm6 class="pa-1">
                                                 <v-flex sm12 class="pa-1">
-                                                    <v-text-field height="40" color="#4a6cac" outlined dense style="border-color:coral;">
+                                                    <v-text-field height="40" v-model="newItem.name" color="#4a6cac" outlined dense style="border-color:coral;">
                                                         <template v-slot:label>
-                                                            <p v-html="'Nombre'" />
+                                                            <p v-html="'Nombre'"/>
                                                         </template>
                                                     </v-text-field>
                                                 </v-flex>
@@ -72,7 +71,7 @@
                                                     </v-select>
                                                 </v-flex>
                                                 <v-flex sm12 class="pa-1">
-                                                    <v-textarea dense outlined rows="5" row-height="45" :rules="[v => !!v || 'La descripción es requerida']" required color="#4a6cac" counter maxlength="250" style="border-color:coral;">
+                                                    <v-textarea dense v-model="newItem.Desc" outlined rows="5" row-height="45" :rules="[v => !!v || 'La descripción es requerida']" required color="#4a6cac" counter maxlength="250" style="border-color:coral;">
                                                         <template v-slot:label>
                                                             <p v-html="'Descripción'" />
                                                         </template>
@@ -85,7 +84,7 @@
                                     <v-flex xs12 sm4>
                                         <v-layout column>
                                             <template>
-                                                <file-pond id="filePond" dark color="primary" name="files" ref="pond" label-idle="Elegir archivo o arrastrar archivo aquí" :allow-multiple="false" :allow-paste="false" :allow-reorder="false" accepted-file-types="image/jpeg, image/png" v-on:init="handleFilePondInit" />
+                                                <file-pond id="filePond" dark color="primary" :server="getServer(i)" name="files" ref="pond" label-idle="Elegir archivo o arrastrar archivo aquí" :allow-multiple="false" :allow-paste="false" :allow-reorder="false" accepted-file-types="image/jpeg, image/png" v-on:init="handleFilePondInit" />
                                             </template>
                                         </v-layout>
                                     </v-flex>
@@ -127,6 +126,10 @@ export default {
         totalLength: 0,
         rowsPerPage: 10,
         page: 1,
+        newItem:{
+            Name:"",
+            Desc:""
+        },
         search: '',
         dialog: false,
         tags: ['foo', 'bar', 'fizz', 'buzz'],
@@ -159,6 +162,20 @@ export default {
 
     },
     methods: {
+        getServer(i) {
+        var server = {
+            process: (fieldName, file, metadata, load, error, progress, abort) => {
+            const formData = new FormData();
+            formData.append(fieldName, file, file.name);
+            this.rows[0].images[i].title = URL.createObjectURL(file);
+            if (i == 0) {
+                this.imageform1 = formData;
+            }
+            abort();
+            }
+        };
+        return server;
+        },
         updatePage(page) {
             this.page = page;
             this.getHistorial();
@@ -166,11 +183,89 @@ export default {
         updatePerPage(per) {
             this.rowsPerPage = per;
             this.getHistorial();
-        }
+        },
+        getItems() {
 
+            //SetItems
+            /*
+            this.items = [];
+            db.get(
+                    `${BAPI}/api/items/`, {
+                        headers: {
+                            Authorization: authentication.getAuthenticationHeader(this)
+                        },
+                        params: {}
+                    }
+                )
+                .then(response => {
+                    this.items = response.data.items;
+                })
+                .catch(error => {
+                    this.$store.commit("toggle_alert", {
+                        color: "red",
+                        text: error.message
+                    });
+                });
+            */
+        },
+        createItem(){
+            
+        //Check API Call
+        /*
+            if(this.newUser.Name != "" && this.newUser.Desc){
+                Axios.post(`${BAPI}/api/item/`)
+            .then(res => {
+              return res.data;
+            })
+            .then(res => {
+              if(this.imageform1 != null){
+              return Promise.all([
+                Axios.post(
+                  `${BAPI}/api/${res.data.id}/images/`,
+                  this.imageform1
+                )
+              ]);
+              }
+            })
+            .then(res => {
+              this.loader = null
+              this.waitforload = false
+              this.dialog = false;
+              this.getEnterprises("Todos")
+              this.$store.commit("toggle_alert", {
+                color: "green",
+                text: "Registro exitoso!"
+              });
+            this.newItem.Name = ""
+            this.newItem.Desc = ""
+            })
+            .catch(err => {
+              this.loader = null
+              this.waitforload = false
+              console.warn(err);
+              this.$store.commit("toggle_alert", {
+                color: "error",
+                text: err.response.data.message
+              });
+            });
+        } else {
+          this.loader = null
+          this.waitforload = false
+          console.warn("No se puede registrar, faltan obligatorios");
+          this.$store.commit("toggle_alert", {
+            color: "red",
+            text: "Las contraseñas deben de ser iguales"
+          });
+        }*/
+        },
+        handleFilePondInit: function (a) {
+
+        },
     },
     mounted() {
-
+        if (this.loggedIn) {
+            this.getItems()
+        }
     },
     components: {
         MyItems: () => import("@/components/viewComponents/Items/Items-Table")

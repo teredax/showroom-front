@@ -19,7 +19,7 @@
             <td class="request-td">{{props.item.tags}}</td>
             <td class="request-td" :class="'accion'" style="text-align:center; min-width:100px;">
               <v-icon small class="mr-7" @click="editdialog = true" color="black">mdi-pencil</v-icon>
-              <v-icon small @click="deletdialog = true " color="black">mdi-delete</v-icon>
+              <v-icon small @click="deletecomment(props.item)" color="black">mdi-delete</v-icon>
             </td>
           </tr>
         </template>
@@ -77,14 +77,13 @@
                 </template>
                 <span v-html="'Cancelar'" />
               </v-tooltip>
-
-              <v-tooltip bottom>
+              <v-tooltip bottom >
                 <template v-slot:activator="{ on }">
                   <span v-on="on">
-                    <v-btn color="#4a6CAC" @click="deletdialog = false" dark>Aceptar</v-btn>
+                    <v-btn color="#4a6CAC" @click="confirmDelete" dark>Aceptar</v-btn>
                   </span>
                 </template>
-                <span v-html="'Rechazar un producto'" />
+                <span v-html="'Eliminar un item'" />
               </v-tooltip>
             </v-layout>
           </v-container>
@@ -214,6 +213,7 @@ export default {
     descriptiondialog: false,
     editdialog: false,
     deletdialog: false,
+    myitem:"",
     editedItem: {
 
     },
@@ -288,9 +288,6 @@ export default {
     }
   },
   methods: {
-    getPrice(price) {
-      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    },
     toggleNext() {
       this.$emit("next");
     },
@@ -304,6 +301,39 @@ export default {
       var formattedDate = new Date(date);
       return formattedDate.toDateString();
     },
+    deleteItem(item){
+          this.deletdialog = true;
+          this.myitem = item.id
+    },
+    confirmDelete(){
+      //delete after connection
+                  this.deletdialog = false;
+      //Check delete call
+      /*
+           var body = new URLSearchParams()
+            db.delete(`${BAPI}/api/${this.myitem}`,{
+                    headers: {
+                        'Authorization': authentication.getAuthenticationHeader(this),
+                    }
+                })
+                .then((response) => {
+                      this.$store.commit("toggle_alert", {
+                      color: "green",
+                      text: "Se elimino el item de manera exitosa"
+                    });
+                    this.getItems()
+                    this.deletdialog = false
+
+                })
+                .catch((error) => {
+                    this.loadEdit = false
+                  this.$store.commit("toggle_alert", {
+                    color: "red",
+                    text: error.message
+                  });                
+                  })
+        */ 
+        },
   },
   mounted() {
     this.currentPage = this.page;
