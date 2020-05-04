@@ -66,7 +66,7 @@
                                                 </v-flex>
                                                 <v-flex sm12 class="pa-1">
                                                     <template>
-                                                        <file-pond id="filePond" dark color="primary" name="files" ref="pond" label-idle="Elegir archivo o arrastrar archivo aquí" :allow-multiple="false" :allow-paste="false" :allow-reorder="false" accepted-file-types="image/jpeg, image/png" v-on:init="handleFilePondInit" />
+                                                        <file-pond id="filePond" dark color="primary" name="files" ref="pond" label-idle="Elegir archivo o arrastrar archivo aquí" :server="getServer(i)" :allow-multiple="false" :allow-paste="false" :allow-reorder="false" accepted-file-types="image/jpeg, image/png" v-on:init="handleFilePondInit" />
                                                     </template>
                                                 </v-flex>
                                             </v-flex>
@@ -110,6 +110,9 @@ export default {
         totalLength: 0,
         rowsPerPage: 10,
         page: 1,
+        newTag:{
+            Name:"",
+        },
         search: "",
         dialog: false,
         tags: ['foo', 'bar', 'fizz', 'buzz'],
@@ -142,14 +145,95 @@ export default {
 
     },
     methods: {
-        updatePage(page) {
-            this.page = page;
-            this.getHistorial();
+        getServer(i) {
+        var server = {
+            process: (fieldName, file, metadata, load, error, progress, abort) => {
+            const formData = new FormData();
+            formData.append(fieldName, file, file.name);
+            this.rows[0].images[i].title = URL.createObjectURL(file);
+            if (i == 0) {
+                this.imageform1 = formData;
+            }
+            abort();
+            }
+        };
+        return server;
         },
-        updatePerPage(per) {
-            this.rowsPerPage = per;
-            this.getHistorial();
-        }
+getItems() {
+
+            //SetTags
+            /*
+            this.items = [];
+            db.get(
+                    `${BAPI}/api/tags/`, {
+                        headers: {
+                            Authorization: authentication.getAuthenticationHeader(this)
+                        },
+                        params: {}
+                    }
+                )
+                .then(response => {
+                    this.items = response.data.items;
+                })
+                .catch(error => {
+                    this.$store.commit("toggle_alert", {
+                        color: "red",
+                        text: error.message
+                    });
+                });
+            */
+        },
+        createTag(){
+            
+        //Check API Call
+        /*
+            if(this.newTag.Name != ""){
+                Axios.post(`${BAPI}/api/item/`)
+            .then(res => {
+              return res.data;
+            })
+            .then(res => {
+              if(this.imageform1 != null){
+              return Promise.all([
+                Axios.post(
+                  `${BAPI}/api/${res.data.id}/images/`,
+                  this.imageform1
+                )
+              ]);
+              }
+            })
+            .then(res => {
+              this.loader = null
+              this.waitforload = false
+              this.dialog = false;
+              this.$store.commit("toggle_alert", {
+                color: "green",
+                text: "Registro exitoso!"
+              });
+            this.newTag.Name = ""
+            })
+            .catch(err => {
+              this.loader = null
+              this.waitforload = false
+              console.warn(err);
+              this.$store.commit("toggle_alert", {
+                color: "error",
+                text: err.response.data.message
+              });
+            });
+        } else {
+          this.loader = null
+          this.waitforload = false
+          console.warn("No se puede registrar, faltan obligatorios");
+          this.$store.commit("toggle_alert", {
+            color: "red",
+            text: "Las contraseñas deben de ser iguales"
+          });
+        }*/
+        },
+        handleFilePondInit: function (a) {
+
+        },
 
     },
     mounted() {

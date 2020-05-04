@@ -19,7 +19,7 @@
             <td class="request-td">{{props.item.tags}}</td>
             <td class="request-td" :class="'accion'" style="text-align:center; min-width:100px;">
               <v-icon small class="mr-7" @click="editdialog = true" color="black">mdi-pencil</v-icon>
-              <v-icon small @click="deletecomment(props.item)" color="black">mdi-delete</v-icon>
+              <v-icon small @click="deleteItem(props.item)" color="black">mdi-delete</v-icon>
             </td>
           </tr>
         </template>

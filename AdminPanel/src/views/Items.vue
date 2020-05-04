@@ -231,7 +231,6 @@ export default {
               this.loader = null
               this.waitforload = false
               this.dialog = false;
-              this.getEnterprises("Todos")
               this.$store.commit("toggle_alert", {
                 color: "green",
                 text: "Registro exitoso!"
