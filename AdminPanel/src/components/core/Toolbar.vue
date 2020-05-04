@@ -21,7 +21,7 @@
       </v-icon>
     </v-btn>
 
-    <div       v-if="loggedIn && this.$vuetify.breakpoint.smAndUp"
+    <div v-if="loggedIn && this.$vuetify.breakpoint.smAndUp"
  style="color:#4A6BAE;position: fixed;right:50px;">Administrador</div>
     <v-layout
       row

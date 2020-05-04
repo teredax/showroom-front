@@ -1,5 +1,4 @@
 <template>
-                  <ul v-for="(tag,j) in itemObj.tags" :key="j"> <a href="#" class="badge badge-pill badge-primary"> {{tag}} </a></ul>
 <div >
     <div >
         <div>

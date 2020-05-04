@@ -9,6 +9,7 @@
         :headers="headers"
         :items="items"
         item-key="_id"
+        :search="search"
       >
         <template v-slot:item="props">
           <tr>
@@ -267,7 +268,8 @@ export default {
     pageCount: Number,
     page: Number,
     rowsPerPage: Number,
-    light: Boolean
+    light: Boolean,
+    search: String
   },
   components: {
   }

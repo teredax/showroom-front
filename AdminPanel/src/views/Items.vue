@@ -5,147 +5,101 @@
     <br>
     <v-container class="pa-0" grid-list-md text-xs-center>
 
-                    <v-container class="pa-0" grid-list-md text-xs-center>
-                        <v-layout row wrap>
-                            <v-flex xs12 sm4>
-                                <v-layout column>
-                                    <v-layout row justify-start style="margin: 0;">
-                                        <p class="Admin-title" style="color:#809DED; font:SemiBold Raleway; font-size:40px">Items</p>
-                                    </v-layout>
-                                </v-layout>
-                            </v-flex>
-                                <v-flex xs12 sm6>
-                                    <v-layout column >
-
-                                    </v-layout>
-                                </v-flex>
-                                <v-flex xs12 sm2>
-                                    <v-layout column>
-                                            <v-btn class="mx-2" fab small dark color="#496CAB" @click="dialog = true">
-                                                <v-icon dark>mdi-plus</v-icon>
-                                            </v-btn>
-                                    </v-layout>
-                                </v-flex>
+        <v-container class="pa-0" grid-list-md text-xs-center>
+            <v-layout row wrap>
+                <v-flex xs12 sm2>
+                    <v-layout column>
+                        <v-layout row justify-start>
+                            <p class="Admin-title" style="color:#809DED; font:SemiBold Raleway; font-size:40px">Items</p>
                         </v-layout>
-                    </v-container>
+                    </v-layout>
+                </v-flex>
+                <v-flex xs12 sm4 style="padding-top:9px;">
+                    <v-layout column>
+                        <template>
+                            <v-text-field height="40" dense :background-color="'white'" color="#809DED" v-model="search" outlined style="border-color:coral;">
+                                <template v-slot:label>
+                                    <p v-html="'Búsqueda General...'" />
+                                </template>
+                            </v-text-field>
+                        </template>
+                    </v-layout>
+                </v-flex>
+                <v-flex xs12 sm4>
+                    <v-layout column>
 
-            <v-card class="mx-auto" :elevation="0">
-                    <MyItems
-                    @updatePage="updatePage"
-                    @updatePerPage="updatePerPage"
-                    :totalLength="totalLength"
-                    :pageCount="pageCount"
-                    :page="page"
-                    :rowsPerPage="rowsPerPage"
-                    :items="items"
-                    :light="false"
-                    />
-            </v-card>
+                    </v-layout>
+                </v-flex>
+                <v-flex xs12 sm2>
+                    <v-layout column>
+                        <v-btn class="mx-2" fab small dark color="#496CAB" @click="dialog = true">
+                            <v-icon dark>mdi-plus</v-icon>
+                        </v-btn>
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+        </v-container>
+
+        <v-card class="mx-auto" :elevation="0">
+            <MyItems @updatePage="updatePage" @updatePerPage="updatePerPage" :totalLength="totalLength" :pageCount="pageCount" :page="page" :rowsPerPage="rowsPerPage" :search="search" :items="items" :light="false" />
+        </v-card>
     </v-container>
 
     <v-dialog v-model="dialog" max-width="800" content-class="dialog-radius">
-      <v-card>
-        <v-card-title class="headline" style="justify-content:left;color:#809DED;">Crear Nuevo Item</v-card-title>
-        <v-card-text>
-            <v-container class="pa-0" grid-list-md text-xs-center>
+        <v-card>
+            <v-card-title class="headline" style="justify-content:left;color:#809DED;">Crear Nuevo Item</v-card-title>
+            <v-card-text>
+                <v-container class="pa-0" grid-list-md text-xs-center>
                     <v-layout row wrap>
-                    <v-flex xs12>
+                        <v-flex xs12>
                             <v-container class="pa-0" grid-list-md text-xs-left>
-                            <v-layout row wrap>
-                                <v-flex xs12 sm8>
-                                <v-layout column>
-                                    <v-flex sm6 class="pa-1">
-                                        <v-flex sm12 class="pa-1">
-                                            <v-text-field
-                                            height="40"
-                                            color="#4a6cac"
-                                            outlined
-                                            dense
-                                            style="border-color:coral;"
-                                            >
-                                            <template v-slot:label>
-                                                <p v-html="'Nombre'" />
+                                <v-layout row wrap>
+                                    <v-flex xs12 sm8>
+                                        <v-layout column>
+                                            <v-flex sm6 class="pa-1">
+                                                <v-flex sm12 class="pa-1">
+                                                    <v-text-field height="40" color="#4a6cac" outlined dense style="border-color:coral;">
+                                                        <template v-slot:label>
+                                                            <p v-html="'Nombre'" />
+                                                        </template>
+                                                    </v-text-field>
+                                                </v-flex>
+                                                <v-flex sm12 class="pa-1">
+                                                    <v-select v-model="value" outlined :items="tags" attach color="#4a6cac" chips label="Tags" multiple>
+                                                        <template v-slot:label>
+                                                            <p v-html="'Tags'" />
+                                                        </template>
+                                                    </v-select>
+                                                </v-flex>
+                                                <v-flex sm12 class="pa-1">
+                                                    <v-textarea dense outlined rows="5" row-height="45" :rules="[v => !!v || 'La descripción es requerida']" required color="#4a6cac" counter maxlength="250" style="border-color:coral;">
+                                                        <template v-slot:label>
+                                                            <p v-html="'Descripción'" />
+                                                        </template>
+                                                    </v-textarea>
+                                                </v-flex>
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-flex>
+
+                                    <v-flex xs12 sm4>
+                                        <v-layout column>
+                                            <template>
+                                                <file-pond id="filePond" dark color="primary" name="files" ref="pond" label-idle="Elegir archivo o arrastrar archivo aquí" :allow-multiple="false" :allow-paste="false" :allow-reorder="false" accepted-file-types="image/jpeg, image/png" v-on:init="handleFilePondInit" />
                                             </template>
-                                            </v-text-field>
-                                        </v-flex>
-                                        <v-flex sm12 class="pa-1">
-                                            <v-select
-                                            v-model="value"
-                                            outlined
-                                            :items="tags"
-                                            attach
-                                            color="#4a6cac"
-                                            chips
-                                            label="Tags"
-                                            multiple
-                                            >
-                                            <template v-slot:label>
-                                                <p v-html="'Tags'" />
-                                            </template>
-                                            </v-select>
-                                        </v-flex>
-                                        <v-flex sm12 class="pa-1">
-                                                <v-textarea
-                                                    dense
-                                                    outlined
-                                                    rows="5"
-                                                    row-height="45"
-                                                    :rules="[v => !!v || 'La descripción es requerida']"
-                                                    required
-                                                    color="#4a6cac"
-                                                    counter
-                                                    maxlength="250"
-                                                    style="border-color:coral;"
-                                                >
-                                                    <template v-slot:label>
-                                                    <p v-html="'Descripción'" />
-                                                    </template>
-                                                </v-textarea>
-                                        </v-flex>
+                                        </v-layout>
                                     </v-flex>
                                 </v-layout>
-                                </v-flex>
-
-                                <v-flex xs12 sm4>
-                                <v-layout column>
-                                    <template>
-                                        <file-pond
-                                        id="filePond"
-                                        dark
-                                        color="primary"
-                                        name="files"
-                                        ref="pond"
-                                        label-idle="Elegir archivo o arrastrar archivo aquí"
-                                        :allow-multiple="false"
-                                        :allow-paste="false"
-                                        :allow-reorder="false"
-                                        accepted-file-types="image/jpeg, image/png"
-                                        v-on:init="handleFilePondInit"
-                                        />
-                                    </template>
-                                </v-layout>
-                                </v-flex>
-                            </v-layout>
                             </v-container>
-                    </v-flex>
+                        </v-flex>
                     </v-layout>
-            </v-container>
-        </v-card-text>
-        <v-card-actions style="justify-content: center;">
-          <v-btn
-            style="text-transform: none; width: 25%; margin-right: 10%;"
-            color="#E36E6E"
-            @click="dialog = false"
-            dark
-          >Cancelar</v-btn>
-          <v-btn
-            depressed
-            style="text-transform: none; width: 25%; background-color: #809DED; color: white;"
-            @click="dialog = false"
-            color="#809DED"
-          >Aceptar</v-btn>
-        </v-card-actions>
-      </v-card>
+                </v-container>
+            </v-card-text>
+            <v-card-actions style="justify-content: center;">
+                <v-btn style="text-transform: none; width: 25%; margin-right: 10%;" color="#E36E6E" @click="dialog = false" dark>Cancelar</v-btn>
+                <v-btn depressed style="text-transform: none; width: 25%; background-color: #809DED; color: white;" @click="dialog = false" color="#809DED">Aceptar</v-btn>
+            </v-card-actions>
+        </v-card>
     </v-dialog>
 
 </section>
@@ -162,41 +116,41 @@ import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 
 const FilePond = vueFilePond(
-  FilePondPluginFileValidateType,
-  FilePondPluginImagePreview
+    FilePondPluginFileValidateType,
+    FilePondPluginImagePreview
 );
 import Axios from "axios";
 import Authentication from "@/components/Authentication";
 export default {
     data: () => ({
-    pageCount: 0,
-    totalLength:0,
-    rowsPerPage: 10,
-    page: 1,
-    dialog: false,
-    tags: ['foo', 'bar', 'fizz', 'buzz'],
-    items: [
-      {
-        _id: "12345",
-        name: "Angel Figueroa",
-        tags: 5
-      },
-      {
-        _id: "13245",
-        name: "Jesus Lugo",
-        tags: 5
-      },
-      {
-        _id: "74526",
-        name: "Gonzalo Adrian",
-        tags: 5
-      },
-      {
-        _id: "23948",
-        name: "Jorge Sabella",
-        tags: 5
-      },
-    ],
+        pageCount: 0,
+        totalLength: 0,
+        rowsPerPage: 10,
+        page: 1,
+        search: '',
+        dialog: false,
+        tags: ['foo', 'bar', 'fizz', 'buzz'],
+        items: [{
+                _id: "12345",
+                name: "Angel Figueroa",
+                tags: 5
+            },
+            {
+                _id: "13245",
+                name: "Jesus Lugo",
+                tags: 5
+            },
+            {
+                _id: "74526",
+                name: "Gonzalo Adrian",
+                tags: 5
+            },
+            {
+                _id: "23948",
+                name: "Jorge Sabella",
+                tags: 5
+            },
+        ],
     }),
     watch: {
 
@@ -206,12 +160,12 @@ export default {
     },
     methods: {
         updatePage(page) {
-        this.page = page;
-        this.getHistorial();
+            this.page = page;
+            this.getHistorial();
         },
         updatePerPage(per) {
-        this.rowsPerPage = per;
-        this.getHistorial();
+            this.rowsPerPage = per;
+            this.getHistorial();
         }
 
     },
@@ -219,7 +173,7 @@ export default {
 
     },
     components: {
-    MyItems: () => import("@/components/viewComponents/Items/Items-Table")
+        MyItems: () => import("@/components/viewComponents/Items/Items-Table")
     }
 };
 </script>
@@ -257,7 +211,6 @@ export default {
     height: 40px !important;
     min-width: 0 !important;
 }
-
 
 /**
  * Page Styles
