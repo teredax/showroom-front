@@ -57,7 +57,7 @@
                                         <v-layout column>
                                             <v-flex sm6 class="pa-1">
                                                 <v-flex sm12 class="pa-1">
-                                                    <v-text-field height="40" v-model="newItem.name" color="#4a6cac" outlined dense style="border-color:coral;">
+                                                    <v-text-field height="40" v-model="newItem.Name" color="#4a6cac" outlined dense style="border-color:coral;">
                                                         <template v-slot:label>
                                                             <p v-html="'Nombre'"/>
                                                         </template>
@@ -212,7 +212,7 @@ export default {
             
         //Check API Call
         /*
-            if(this.newUser.Name != "" && this.newUser.Desc){
+            if(this.newItem.Name != "" && this.newItem.Desc){
                 Axios.post(`${BAPI}/api/item/`)
             .then(res => {
               return res.data;

@@ -58,7 +58,7 @@
                                         <v-layout column>
                                             <v-flex sm6 class="pa-1">
                                                 <v-flex sm12 class="pa-1">
-                                                    <v-text-field height="40" color="#4a6cac" outlined dense style="border-color:coral;">
+                                                    <v-text-field height="40" v-model="newTag.Name" color="#4a6cac" outlined dense style="border-color:coral;">
                                                         <template v-slot:label>
                                                             <p v-html="'Nombre'" />
                                                         </template>
